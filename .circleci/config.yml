@@ -24,6 +24,8 @@ jobs:
             pip install -r requirements/local.txt
           name: install other dep
       - run:
+          command: env
+      - run:
           name: Waiting for Redis to be ready
           command: |
             for i in `seq 1 10`;
