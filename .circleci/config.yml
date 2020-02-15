@@ -26,7 +26,7 @@ jobs:
             pip install -r requirements/local.txt
           name: install other dep
       - run:
-          command: py.test
+          command: pytest
           name: Test
 
 workflows:
