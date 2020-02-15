@@ -27,8 +27,8 @@ jobs:
           name: install other dep
       - run:
           command: | 
-          . venv/bin/activate
-          pytest
+            . venv/bin/activate
+            pytest
           name: Test
 
 workflows:
