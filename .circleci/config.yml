@@ -5,14 +5,28 @@ orbs:
 
 jobs:
   build-and-test:
-    executor: python/default
+    docker:
+      - image: circleci/python:3.5-buster-node-browsers-legacy
+      - image: circleci/postgres:9.6.5-alpine-ram
+          environment:
+            POSTGRES_USER: ubuntu
+            POSTGRES_DB: circle_test
+            POSTGRES_PASSWORD: ''
     steps:
       - checkout
-      - python/load-cache
-      - python/install-deps
-      - python/save-cache
       - run:
-          command: ./manage.py test
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+          name: install dep
+      - run:
+          command: |
+            . venv/bin/activate
+            pip install -r requirements/local.txt
+          name: install other dep
+      - run:
+          command: py.test
           name: Test
 
 workflows:
