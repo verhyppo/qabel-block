@@ -28,7 +28,7 @@ jobs:
       - run:
           command: | 
             . venv/bin/activate
-            pytest
+            py.test
           name: Test
 
 workflows:
