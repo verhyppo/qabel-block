@@ -7,6 +7,8 @@ jobs:
   build-and-test:
     docker:
       - image: circleci/python:3.7-stretch-node-browsers-legacy
+        environment:
+          REDIS_HOST: localhost
       - image: circleci/redis:rc-alpine3.11
     steps:
       - checkout
