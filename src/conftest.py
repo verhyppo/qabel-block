@@ -110,7 +110,9 @@ def backend(request, cache):
 
 @pytest.fixture
 def cache(request):
-    cache_object = cache_backends.RedisCache(host='localhost', port='6379')
+    import environs
+    env = environs.Env()
+    cache_object = cache_backends.RedisCache(host=env('REDIS_HOST'), port=env('REDIS_PORT'))
     cache_object.flush()
     return cache_object
 
